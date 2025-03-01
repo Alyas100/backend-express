@@ -3,6 +3,12 @@ import express from 'express';
 const port = process.env.PORT || 3001; // Use the environment variable if available
 const server = express();
 
+const cors = require('cors');
+app.use(cors({
+    origin: '*',  // Allow all domains (for testing)
+}));
+
+
 // Middleware to parse JSON requests from frontend
 server.use(express.json());
 
