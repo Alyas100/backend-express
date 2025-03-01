@@ -1,0 +1,13 @@
+{
+  "name": "backend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "server": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  
+
+  }
+}
