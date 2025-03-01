@@ -1,6 +1,6 @@
 import express from 'express';
 
-const port = 3001;
+const port = process.env.PORT || 3001; // Use the environment variable if available
 const server = express();
 
 // Middleware to parse JSON requests from frontend
@@ -39,8 +39,8 @@ server.delete('/api/cart/:id', (req, res) => {
     res.json({ message: "Item deleted from cart!", cart });
 });
 
-// Start the server
-server.listen(port, (err) => {
+// Start the server and listen on 0.0.0.0 to allow external access
+server.listen(port, "0.0.0.0", (err) => {
     if (err) throw err;
-    console.log(`> Server running on http://localhost:${port}`);
+    console.log(`> Server running on port ${port}`);
 });
