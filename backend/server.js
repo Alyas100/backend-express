@@ -2,28 +2,17 @@ import express from 'express';
 import cors from 'cors';
 
 const port = process.env.PORT || 3001; // Use the environment variable if available
-const server = express();
-
+const server = express(); // Renamed from "app" to "server"
 
 // Fix CORS issue
-app.use(cors({
+server.use(cors({
     origin: '*',  // Allow all origins (for testing)
     methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow specific methods
     allowedHeaders: ['Content-Type', 'Authorization'], // Allow specific headers
 }));
 
-
-
 // Middleware to parse JSON requests from frontend
 server.use(express.json());
-
-// Enable CORS if frontend is on a different port
-server.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-    next();
-});
 
 // Cart Data (Fake Database)
 let cart = [
@@ -51,7 +40,6 @@ server.delete('/api/cart/:id', (req, res) => {
 });
 
 // Start the server and listen on 0.0.0.0 to allow external access
-server.listen(port, "0.0.0.0", (err) => {
-    if (err) throw err;
+server.listen(port, "0.0.0.0", () => {
     console.log(`> Server running on port ${port}`);
 });
